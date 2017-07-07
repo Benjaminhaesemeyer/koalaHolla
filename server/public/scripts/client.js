@@ -71,7 +71,6 @@ function appendToDom(koalas) {
     // For each book, append a new row to our table
     $tr = $('<tr></tr>');
     $tr.data('koala', koala);
-    $tr.append('<td>' + koala.id + '</td>');
     $tr.append('<td>' + koala.name + '</td>');
     $tr.append('<td>' + koala.gender + '</td>');
     $tr.append('<td>' + koala.age + '</td>');
