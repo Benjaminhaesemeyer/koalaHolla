@@ -19,7 +19,15 @@ $( document ).ready( function(){
       koala.notes = $('#notesIn').val();
     // call saveKoala with the new obejct
     saveKoala( Newkoala );
-  }); //end addButton on click
+  });
+   //end addButton on click
+   $('#viewKoalas').on('click', '.deleteBtn', function(){
+   // We attached the bookid as data on our button
+   var koalaid = $(this).data('koalaid');
+   console.log($(this));
+   console.log('Delete koala with id of', koalaid);
+   deleteKoala(koalaid);
+ });
 }); // end doc ready
 
 function getKoalas(){
@@ -80,4 +88,21 @@ function appendToDom(koalas) {
     $tr.append('<td><button class="deleteBtn" data-koalaid="' + koala.id + '">Delete</button></td>');
     $('#viewKoalas').append($tr);
   }
+}
+function deleteKoala(koalaid) {
+  console.log(koalaid);
+  // When using URL params, your url would be...
+  // '/books/' + bookId
+
+  // YOUR AJAX CODE HERE
+  $.ajax({
+    type: 'DELETE',
+    url: '/koalas/' + koalaid,
+    success: function(response) {
+      console.log(response);
+      console.log('I deleted the koala?!?');
+      refreshKoalas();
+      
+    }
+  });
 }
